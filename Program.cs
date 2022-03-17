@@ -11,7 +11,7 @@ namespace TicketingSystem
         static void Main(string[] args)
         {
 
-            string file = "Tickets.csv";
+        /*  string file = "Tickets.csv";
             StreamReader sr = new StreamReader(file);
                 List<string> originalFile = new List<string>();
                 while (!sr.EndOfStream)
@@ -19,7 +19,10 @@ namespace TicketingSystem
                     originalFile.Add(sr.ReadLine());
                     
                 }
-                sr.Close();
+                sr.Close(); */
+            TicketManager manager = new TicketManager("Tickets.csv");
+            manager.loadTicketsFromFile();
+
 
               string choice;
             do
@@ -31,7 +34,7 @@ namespace TicketingSystem
 
                 if (choice == "1")
                 {
-                    if (File.Exists(file))
+                /*  if (File.Exists(file))
                     {
                      
                         StreamReader sr1 = new StreamReader(file);
@@ -50,11 +53,13 @@ namespace TicketingSystem
                     else
                     {
                         Console.WriteLine("File does not exist");
-                    }
+                    } */
+                    manager.listTickets();
+                    manager.createTicket();
                 }
                 else if (choice == "2")
                 {
-                    
+                    /*
                     StreamWriter sw = new StreamWriter(file);
     
                     Console.WriteLine("Do you want to create more data?(Y/N)");
@@ -88,7 +93,9 @@ namespace TicketingSystem
                         sw.WriteLine(line);
                     }
                     
-                    sw.Close();
+                    sw.Close(); */
+                    manager.writeTicketsToFile();
+
                 }
             } while (choice == "1" || choice == "2");
         }   
