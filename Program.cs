@@ -27,9 +27,9 @@ namespace TicketingSystem
               string choice;
             do
             {
-                Console.WriteLine("1) Read data from CSV file.");
-                Console.WriteLine("2) Create file from data.");
-                Console.WriteLine("Enter any other key to exit.");
+                Console.WriteLine("\n1) List Tickets From File.");
+                Console.WriteLine("2) Create New Ticket And Write To File.");
+                Console.WriteLine("\nEnter any other key to exit.");
                 choice = Console.ReadLine();
 
                 if (choice == "1")
@@ -55,9 +55,9 @@ namespace TicketingSystem
                         Console.WriteLine("File does not exist");
                     } */
                     manager.listTickets();
-                    manager.createTicket();
-                }
-                else if (choice == "2")
+                //  manager.createTicket();
+
+                } else if (choice == "2")
                 {
                     /*
                     StreamWriter sw = new StreamWriter(file);
@@ -94,7 +94,9 @@ namespace TicketingSystem
                     }
                     
                     sw.Close(); */
+                    manager.createTicket();
                     manager.writeTicketsToFile();
+
 
                 }
             } while (choice == "1" || choice == "2");
