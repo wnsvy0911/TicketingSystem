@@ -14,7 +14,8 @@ namespace TicketingSystem
         public string assigned {get; set;}
         public List<string> watchers {get; set;}
 
-        public Ticket() {
+        public Ticket()
+        {
             watchers = new List<string>();
         }
 
@@ -23,7 +24,8 @@ namespace TicketingSystem
             return this.ticketId + "," + this.summary + "," + this.status + "," + this.priority + "," + this.submitter + "," + this.assigned + "," + watchersString;
         }
 
-        public static object createTicket() {
+    /*  public static object createTicket()
+        {
             Console.WriteLine("Enter a summary");                        
             string summary = Console.ReadLine();
             Console.WriteLine("Enter the status (Open/Closed)");
@@ -38,10 +40,10 @@ namespace TicketingSystem
             List<string> watchers = new List<string>();
             string watching = Console.ReadLine();
             watchers.Add(watching);
-
             return new object();
-        }
-        public static List<string> createWatchersFromString(string watchers) {
+        } */
+        public static List<string> createWatchersFromString(string watchers)
+        {
             string[] watchersArry = watchers.Split('|');
             List<string> watchersList = new List<string>(watchersArry);
             return watchersList;

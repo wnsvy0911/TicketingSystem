@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
+
 namespace TicketingSystem
 {
     public class TicketManager
@@ -10,15 +11,13 @@ namespace TicketingSystem
         public List<TaskTicket> taskTickets = new List<TaskTicket>();
         public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
 
-        string fileName;
         string bugHeaders;
         string taskHeaders;
         string enhancementHeaders;
 
 
-        public TicketManager (string fileName)
+        public TicketManager ()
         {
-            this.fileName = fileName;
         }
 
         public void loadTicketsFromFile(string ticketType, string filename)
@@ -39,36 +38,35 @@ namespace TicketingSystem
                             this.taskHeaders = line;
                         } else if (ticketType == "enhancementTicket") {
                             this.enhancementHeaders = line;
-                        } else {
-
                         }
                         firstLine = false;
                     } else {                        
                         if (ticketType == "bugTicket") {
-                            BugTicket.createTicketFromFile(line);
+                            this.bugTickets.Add(BugTicket.createTicketFromFile(line));
                         } else if (ticketType == "taskTicket") {
-                            TaskTicket.createTicketFromFile(line);
+                            this.taskTickets.Add(TaskTicket.createTicketFromFile(line));
                         } else if (ticketType == "enhancementTicket") {
-                            EnhancementTicket.createTicketFromFile(line);
+                            this.enhancementTickets.Add(EnhancementTicket.createTicketFromFile(line));
                         } else {
 
                         }
+                        //this.tickets.Add();
                     }
                 }
                 sr1.Close();
             }
             else
             {
-                Console.WriteLine("File does not exist");
+                Console.WriteLine("File does not exist" + filename);
             }
         }
 
         public void writeTicketsToFile(string ticketType, string filename)
         {
 
-            if (File.Exists(this.fileName))
+            if (File.Exists(filename))
             {
-                StreamWriter sw = new StreamWriter(this.fileName);
+                StreamWriter sw = new StreamWriter(filename);
 
                 if (ticketType == "bugTicket") {
                     sw.WriteLine(this.bugHeaders);
@@ -96,7 +94,8 @@ namespace TicketingSystem
             }
         }
 
-        public void listTickets(string ticketType) {
+        public void listTickets(string ticketType)
+        {
             if (ticketType == "bugTicket") {
                 Console.WriteLine("\n" + this.bugHeaders);
                 foreach (var ticket in this.bugTickets) {
@@ -116,5 +115,6 @@ namespace TicketingSystem
 
             }
         }
+        
     }
 }

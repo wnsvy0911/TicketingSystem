@@ -37,7 +37,9 @@ namespace TicketingSystem
             Console.WriteLine("Enter the watching");
             List<string> watchers = new List<string>();
             string watching = Console.ReadLine();
+
             watchers.Add(watching);
+
             Console.WriteLine("Enter a project name");                        
             string projectName = Console.ReadLine();
             Console.WriteLine("Enter a due date, ( 3/21/2022 )");                        
@@ -51,12 +53,12 @@ namespace TicketingSystem
             taskTicket.assigned = assigned;
             taskTicket.watchers = watchers;
             taskTicket.projectName = projectName;
-            taskTicket.dueDate = DateTime.Parse(dueDate);;
+            taskTicket.dueDate = DateTime.Parse(dueDate);
 
             return taskTicket;
         }
 
-        public static object createTicketFromFile(string line) {
+        public static TaskTicket createTicketFromFile(string line) {
             TaskTicket taskTicket = new TaskTicket();
             string[] fieldsArr = line.Split(',');
 
@@ -68,7 +70,7 @@ namespace TicketingSystem
             taskTicket.assigned = fieldsArr[5];
             taskTicket.watchers = Ticket.createWatchersFromString(fieldsArr[6]);
             taskTicket.projectName = fieldsArr[7];
-            taskTicket.dueDate = DateTime.Parse(fieldsArr[7]);
+            taskTicket.dueDate = DateTime.Parse(fieldsArr[8]);
 
             return taskTicket;
         }
