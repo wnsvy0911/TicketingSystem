@@ -10,6 +10,8 @@ namespace TicketingSystem
        private static NLog.Logger logger = NLogBuilder.ConfigureNLog(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
         static void Main(string[] args)
         {
+            logger.Info("Program started");
+
             TicketManager manager = new TicketManager();
             manager.loadTicketsFromFile("bugTicket", "bugTickets.csv");
             manager.loadTicketsFromFile("taskTicket", "taskTickets.csv");
@@ -72,12 +74,15 @@ namespace TicketingSystem
                             typeSelected = "";
                         }
                     } while (choice == "1" || choice == "2");
+
                 } else {
                     Console.WriteLine("Please Make a Valid Choice");
                     typeSelected = "";
                 }
             } while (typeSelected == "");
          
+            logger.Info("Program ended");
+
         }
     }
 }
