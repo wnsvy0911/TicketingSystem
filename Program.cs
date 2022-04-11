@@ -45,8 +45,10 @@ namespace TicketingSystem
                     {
                         Console.WriteLine("\n1) List Tickets From File.");
                         Console.WriteLine("2) Create New Ticket And Write To File.");
+                        Console.WriteLine("3) Find Ticket");
                         Console.WriteLine("\nEnter any other key to exit.");
                         choice = Console.ReadLine();
+                        logger.Info("User choice: {Choice}", choice);
 
                         if (choice == "1")
                         {
@@ -70,11 +72,17 @@ namespace TicketingSystem
                             }
                             manager.writeTicketsToFile(typeSelected, filename);
 
+                        } else if (choice == "3") {
+                        Console.WriteLine("Please Enter Search Criteria.");
+                        manager.FindTickets(Console.ReadLine());
+                    }
+                } while (choice == "1" || choice == "2" || choice == "3");
+/*
                         } else {
                             typeSelected = "";
                         }
                     } while (choice == "1" || choice == "2");
-
+*/
                 } else {
                     Console.WriteLine("Please Make a Valid Choice");
                     typeSelected = "";

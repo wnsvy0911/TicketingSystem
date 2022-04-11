@@ -11,15 +11,18 @@ namespace TicketingSystem
         public List<TaskTicket> taskTickets = new List<TaskTicket>();
         public List<EnhancementTicket> enhancementTickets = new List<EnhancementTicket>();
 
+
         string bugHeaders;
         string taskHeaders;
         string enhancementHeaders;
 
 
-        public TicketManager ()
+/*        public TicketManager(String ticketFilePath)
         {
+            ticketFilePath = ticketFilePath;
+            Tickets = new List<Ticket>();
         }
-
+*/
         public void loadTicketsFromFile(string ticketType, string filename)
         {
             if (File.Exists(filename))
@@ -113,6 +116,16 @@ namespace TicketingSystem
                 }
             } else {
 
+            }
+        }
+
+    
+        public void FindTickets(string searchCriteria) {
+            var ticketsFound = this.Tickets.Where(t => t.ticketId.Contains(searchCriteria));
+            Console.WriteLine(ticketsFound.Count() + " Matches Found");
+            foreach(Ticket t in ticketsFound)
+            {
+                Console.WriteLine($" - {t.ticketId}");
             }
         }
         
