@@ -121,11 +121,11 @@ namespace TicketingSystem
 
     
         public void FindTickets(string searchCriteria) {
-            var ticketsFound = this.Tickets.Where(t => t.ticketId.Contains(searchCriteria));
-            Console.WriteLine(ticketsFound.Count() + " Matches Found");
+            var ticketsFound = this.taskTickets.FindAll(t => t.status.Contains(searchCriteria) || t.priority.Contains(searchCriteria) || t.submitter.Contains(searchCriteria));
+            Console.WriteLine(ticketsFound.Count + " Matches Found");
             foreach(Ticket t in ticketsFound)
             {
-                Console.WriteLine($" - {t.ticketId}");
+                Console.WriteLine($" - {t.ticketId}, {t.summary}, {t.status}, {t.priority}, {t.submitter}, {t.assigned}");
             }
         }
         
